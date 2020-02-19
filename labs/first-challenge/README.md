@@ -37,6 +37,7 @@ Build Requirements
 ------------------
 ```
 # Build Requirements here
+#golang
 ```
 
 
@@ -44,6 +45,7 @@ How to build
 ------------
 ```
 # instructions here
+# golang
 ```
 
 
@@ -51,6 +53,7 @@ How to Run
 ----------
 ```
 # instructions here
+# go run first_challenge.go
 ```
 
 
