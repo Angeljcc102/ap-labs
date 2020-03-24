@@ -4,9 +4,11 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strconv"
+	"strings"
 )
 
-type TypeStruct struct {
+type typeStruct struct {
 	numDir      int
 	numSymLinks int
 	numDevices  int
@@ -17,7 +19,7 @@ type TypeStruct struct {
 // scanDir stands for the directory scanning implementation
 func scanDir(dir string) error {
 
-	var fileTypes = TypeStruct{}
+	var fileTypes = typeStruct{}
 
 	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
@@ -47,16 +49,22 @@ func scanDir(dir string) error {
 		return nil
 	}
 
+	var sizeString = len(dir) + 2 - len(strconv.Itoa(fileTypes.numDir))
+
 	fmt.Println("Directory Scanner Tool")
-	fmt.Println("+-----------------------+")
-	fmt.Println("|Path                   | " + dir)
-	fmt.Println("+-----------------------+")
-	fmt.Printf("|Directories            | %d\n", fileTypes.numDir)
-	fmt.Printf("|Symbolic links         | %d\n", fileTypes.numSymLinks)
-	fmt.Printf("|Devices                | %d\n", fileTypes.numDevices)
-	fmt.Printf("|Sockets                | %d\n", fileTypes.numSockets)
-	fmt.Printf("|Other files            | %d\n", fileTypes.numOthers)
-	fmt.Println("+-----------------------+")
+	fmt.Println("+-----------------------+" + strings.Repeat("-", len(dir)+3) + "+")
+	fmt.Printf("|Path                   |  %s |\n", dir)
+	fmt.Println("+-----------------------+" + strings.Repeat("-", len(dir)+3) + "+")
+	fmt.Printf("|Directories            | %d%s\n", fileTypes.numDir, strings.Repeat(" ", sizeString)+"|")
+	sizeString = len(dir) + 2 - len(strconv.Itoa(fileTypes.numSymLinks))
+	fmt.Printf("|Symbolic links         | %d%s\n", fileTypes.numSymLinks, strings.Repeat(" ", sizeString)+"|")
+	sizeString = len(dir) + 2 - len(strconv.Itoa(fileTypes.numDevices))
+	fmt.Printf("|Devices                | %d%s\n", fileTypes.numDevices, strings.Repeat(" ", sizeString)+"|")
+	sizeString = len(dir) + 2 - len(strconv.Itoa(fileTypes.numSockets))
+	fmt.Printf("|Sockets                | %d%s\n", fileTypes.numSockets, strings.Repeat(" ", sizeString)+"|")
+	sizeString = len(dir) + 2 - len(strconv.Itoa(fileTypes.numOthers))
+	fmt.Printf("|Other files            | %d%s\n", fileTypes.numOthers, strings.Repeat(" ", sizeString)+"|")
+	fmt.Println("+-----------------------+" + strings.Repeat("-", len(dir)+3) + "+")
 
 	return nil
 }

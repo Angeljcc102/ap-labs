@@ -72,7 +72,7 @@ void analizeLog(char *logFile, char *report) {
                     int k = 0;
                     j++;
                     if(text[j] == 'i' && text[j+2] == 's' && text[j+5] == 'l' && text[j+8] == 'd'){
-                        j = j+9;
+                        j = j+10;
                         while(text[j] != '('){
                             aux.name[k] = text[j];
                             k++;
@@ -86,7 +86,7 @@ void analizeLog(char *logFile, char *report) {
                         j = i;               
                     }
                     else if(text[j] == 'r' && text[j+2] == 'm' && text[j+4] == 'v' && text[j+6] == 'd'){
-                        j = j+7;
+                        j = j+8;
                         rem_num_packages++;
                         while(text[j] != '('){
                             aux.name[k] = text[j];
@@ -102,7 +102,7 @@ void analizeLog(char *logFile, char *report) {
                         j = i;        
                     }
                     else if(text[j] == 'u' && text[j+2] == 'g' && text[j+5] == 'd' && text[j+7] == 'd'){
-                        j = j+8;
+                        j = j+9;
                         up_num_packages++;
                         while(text[j] != '('){
                             aux.name[k] = text[j];
@@ -119,7 +119,7 @@ void analizeLog(char *logFile, char *report) {
                         j = i;
                     }
                     else if(text[j] == 'r' && text[j+2] == 'i' && text[j+5] == 't' && text[j+10] == 'd'){
-                        j = j+11;
+                        j = j+12;
                         while(text[j] != '('){
                             aux.name[k] = text[j];
                             k++;
@@ -189,7 +189,7 @@ void analizeLog(char *logFile, char *report) {
     write(package_report, "----------------\n", 17);
 
     for(int i = 0; i < inst_num_packages; i ++){
-        int j = 1;
+        int j = 0;
         write(package_report, "- Package Name       : ", 23);
         while(packages_list[i].name[j] != '\0'){
             write(package_report, &packages_list[i].name[j] , 1);
