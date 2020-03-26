@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+
 
 int mystrlen(char *str);
 char *mystradd(char *origin, char *addition);
