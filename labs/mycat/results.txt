@@ -1,0 +1,53 @@
+results from book.txt - 3771 lines
+cat		                mycat	
+real	0m0.127s	    real	0m0.118s
+user	0m0.002s	    user	0m0.004s
+sys	    0m0.007s	    sys	    0m0.014s
+			
+real	0m0.093s	    real	0m0.117s
+user	0m0.000s	    user	0m0.000s
+sys	    0m0.008s	    sys	    0m0.017s
+			
+real	0m0.149s	    real	0m0.144s
+user	0m0.009s	    user	0m0.008s
+sys	    0m0.000s	    sys	    0m0.008s
+			
+real	0m0.124s	    real	0m0.118s
+user	0m0.000s	    user	0m0.004s
+sys	    0m0.009s	    sys	    0m0.012s
+			
+real	0m0.116s	    real	0m0.130s
+user	0m0.000s	    user	0m0.004s
+sys	    0m0.009s	    sys	    0m0.013s
+
+real avg = 0.1218s      real avg = 0.1254s
+mycat is 2.95567% slower than cat.
+
+results from book2.txt - 101861 lines
+cat                     mycat
+real	0m2.890s	    real	0m3.075s
+user	0m0.000s	    user	0m0.097s
+sys	    0m0.237s	    sys	    0m0.341s
+			
+real	0m3.056s	    real	0m3.161s
+user	0m0.000s	    user	0m0.108s
+sys	    0m0.223s	    sys	    0m0.327s
+			
+real	0m2.734s	    real	0m2.940s
+user	0m0.000s	    user	0m0.098s
+sys	    0m0.221s	    sys	    0m0.330s
+			
+real	0m3.197s	    real	0m3.337s
+user	0m0.000s	    user	0m0.090s
+sys	    0m0.211s	    sys	    0m0.329s
+			
+real	0m2.509s	    real	0m3.065s
+user	0m0.000s	    user	0m0.095s
+sys	    0m0.212s	    sys	    0m0.365s
+
+real avg = 2.8772s      real avg = 3.1156
+mycat is 8.28583% slower than cat.
+
+cat is faster doing this tasks than the mycat and this difference can't be recongnizable with short files,
+but with bigger files we can see a visual difference between the cat's, so its better in general cat altough
+mycat sometimes can have times closer to cat.
