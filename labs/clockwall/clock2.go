@@ -24,7 +24,7 @@ func handleConn(c net.Conn, timezone string, location *time.Location) {
 
 func main() {
 
-	if len(os.Args) < 3 || len(os.Args) > 3 {
+	if len(os.Args) < 3 || len(os.Args) > 3 || (os.Args[1]) != "-port" {
 		fmt.Println("Usage TZ={Timezone} ./clock2 -port {Port}")
 		os.Exit(1)
 	}

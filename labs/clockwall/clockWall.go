@@ -28,7 +28,7 @@ func main() {
 		address := os.Args[i]
 		conn, err := net.DialTimeout("tcp", address, time.Second)
 		if err != nil {
-			log.Fatal(" Invalid host(s) or timeout exceded ")
+			log.Fatal(" Invalid host(s) or timeout exceeded ")
 		}
 		response := make([]byte, 30)
 
