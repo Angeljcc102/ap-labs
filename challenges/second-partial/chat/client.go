@@ -7,6 +7,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"net"
@@ -15,10 +16,20 @@ import (
 
 //!+
 func main() {
-	conn, err := net.Dial("tcp", "localhost:8000")
+
+	if len(os.Args) < 5 || len(os.Args) > 5 || (os.Args[1]) != "-user" || (os.Args[3]) != "-server" {
+		fmt.Println("Usage : go run client.go -user {User} -server {Server Hostname}")
+		os.Exit(1)
+	}
+	server := os.Args[4]
+
+	conn, err := net.Dial("tcp", server)
+
 	if err != nil {
 		log.Fatal(err)
 	}
+	//"disconnectedclientfromserversendsignaltodelete"
+	fmt.Fprintln(conn, os.Args[2])
 	done := make(chan struct{})
 	go func() {
 		io.Copy(os.Stdout, conn) // NOTE: ignoring errors
