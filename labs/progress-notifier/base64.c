@@ -15,7 +15,6 @@
 
 #define ENCODED_FILE "encoded.txt"
 #define DECODED_FILE "decoded.txt"
-#define SIGINFO 20
 
 float progress;
 struct stat st;
@@ -169,7 +168,7 @@ int main(int argc, char **argv){
     }
 
     signal(SIGINT, signalHandler);
-    signal(SIGINFO,signalHandler);
+    signal(SIGUSR2,signalHandler);
 
     if(strcmp(argv[1],"--encode") == 0){
         int input_file, encoded_file;
