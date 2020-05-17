@@ -10,9 +10,11 @@
 //
 // Crawl3 adds support for depth limiting.
 //
+// For use : go get gopl.io/ch5/links
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -41,27 +43,39 @@ func crawl(url string) []string {
 
 //!+
 func main() {
+
+	if len(os.Args) < 3 {
+		fmt.Println("Usage : go run crawl3.go -depth={Depth limit} {Url}")
+		os.Exit(1)
+	}
+
 	worklist := make(chan []string)
-	var n int // number of pending sends to worklist
+	var n, currentDepth int // number of pending sends to worklist
+	var limitDepth *int
+
+	limitDepth = flag.Int("depth", 0, "depth limit int value")
+	flag.Parse()
+	currentDepth = 0
 
 	// Start with the command-line arguments.
 	n++
-	go func() { worklist <- os.Args[1:] }()
+	go func() { worklist <- os.Args[2:] }()
 
 	// Crawl the web concurrently.
 	seen := make(map[string]bool)
 	for ; n > 0; n-- {
 		list := <-worklist
-		for _, link := range list {
-			if !seen[link] {
-				seen[link] = true
-				n++
-				go func(link string) {
-					worklist <- crawl(link)
-				}(link)
+		if currentDepth <= *limitDepth {
+			for _, link := range list {
+				if !seen[link] {
+					seen[link] = true
+					n++
+					go func(link string) {
+						worklist <- crawl(link)
+					}(link)
+				}
 			}
+			currentDepth++
 		}
 	}
 }
-
-//!-
