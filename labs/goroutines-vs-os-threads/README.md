@@ -20,3 +20,9 @@ How to submit your work
 GITHUB_USER=<your_github_user>  make submit
 ```
 More details at: [Classify API](../../classify.md)
+
+How to run the program
+=======================
+```
+Usage : go run exercise9_5.go -time={Integer time in seconds}
+```
